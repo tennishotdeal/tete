@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>테니스핫딜 | 테니스용품 판매처 표시가 비교</title>
+  <meta name="description" content="입문용·올라운드·상급자 테니스라켓부터 테니스공, 오버그립 개당 단가 비교까지 판매처 표시가를 한눈에 확인하세요.">
+
+  <!-- 카카오톡 & SNS 공유 최적화 (Open Graph) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="테니스핫딜">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="테니스핫딜 | 테니스용품 판매처 표시가 비교">
+  <meta property="og:description" content="입문용·올라운드·상급자 라켓 스펙별 필터 & 공·그립 개당 단가 자동 비교 마켓">
+  <meta property="og:image" content="https://shop-phinf.pstatic.net/20250314_204/1741940525093AyEuo_JPEG/76073426075990282_1525997282.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: #ffffff;
+      color: #111827;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", sans-serif;
+      padding-bottom: 100px;
+    }
+
+    /* 1단 대분류 카테고리 탭 */
+    .main-tab {
+      position: relative;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      padding: 12px 4px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #6b7280;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .main-tab:hover {
+      color: #111827;
+    }
+
+    .main-tab[aria-pressed="true"] {
+      color: #193eb7;
+      border-bottom-color: #193eb7;
+      font-weight: 800;
+    }
+
+    /* 2단 세부 필터 버튼 (Design B 직관형 칩) */
+    .sub-pill {
+      background-color: #f9fafb;
+      color: #374151;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .sub-pill:hover {
+      border-color: #193eb7;
+      color: #193eb7;
+    }
+
+    .sub-pill[aria-pressed="true"] {
+      background-color: #193eb7;
+      color: #ffffff;
+      border-color: #193eb7;
+    }
+
+    .style-pill[aria-pressed="true"] {
+      background-color: #111827;
+      color: #ffffff;
+      border-color: #111827;
+    }
+
+    /* Design B 상품 카드 */
+    .deal-card {
+      background-color: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+    }
+
+    .deal-card:hover {
+      border-color: #193eb7;
+      box-shadow: 0 10px 24px rgba(25, 62, 183, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .photo-area {
+      position: relative;
+      background-color: #f3f4f6;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-area img {
+      width: 100%;
+      height: 176px;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      transition: transform 0.2s ease;
+    }
+
+    .deal-card:hover .photo-area img {
+      transform: scale(1.04);
+    }
+
+    .badge-lowest {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #e11d48;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 5px;
+      letter-spacing: -0.02em;
+      z-index: 2;
+    }
+
+    .badge-tag {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background-color: rgba(17, 24, 39, 0.82);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      z-index: 2;
+    }
+
+    .btn-buy-b {
+      background-color: #193eb7;
+      color: #ffffff;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-buy-b:hover {
+      background-color: #133091;
+    }
+
+    /* 가로 스크롤바 숨김 */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    @media (max-width: 640px) {
+      .photo-area {
+        padding: 12px;
+      }
+      .photo-area img {
+        height: 132px;
+      }
+    }
+
+    button, a, input, select { touch-action: manipulation; }
+    button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 3px solid #587bec; outline-offset: 3px;
+    }
+    .deal-card, .product-details { min-width: 0; }
+    .product-details h3 { overflow-wrap: anywhere; }
+    .ball-unit-price:empty { display: none; }
+    #compareBar { padding-bottom: env(safe-area-inset-bottom); }
+    @media (max-width: 639px) {
+      body { padding-bottom: calc(180px + env(safe-area-inset-bottom)); }
+      header > div { flex-wrap: wrap; padding: 10px 16px; }
+      header > div > div:first-child { flex: 1 1 100%; justify-content: space-between; }
+      header > div > div:last-child { width: 100%; justify-content: flex-end; }
+      header button { min-height: 44px; font-size: 14px !important; }
+      main { padding-top: 20px !important; }
+      main > section:first-child h1 { font-size: 24px; line-height: 1.3; }
+      main > section:first-child p { font-size: 14px; line-height: 1.6; }
+      nav { gap: 18px !important; }
+      .main-tab { min-height: 48px; font-size: 15px; }
+      .sub-pill { min-height: 44px; font-size: 14px; padding: 8px 12px; flex-shrink: 0; }
+      section[aria-label="세부 스펙 및 브랜드 필터"] { padding: 12px; border-radius: 12px; }
+      #racketSubFilters > div, section[aria-label="세부 스펙 및 브랜드 필터"] > div > div:first-child { min-width: 0; }
+      #racketSubFilters > div > span { width: auto; white-space: nowrap; }
+      #levelPills, #stylePills, #brandPills, #ballPacks {
+        display: flex; flex-wrap: nowrap; overflow-x: auto; width: 100%; min-width: 0;
+        padding-bottom: 4px; overscroll-behavior-x: contain;
+      }
+      #searchInput { min-height: 48px; font-size: 16px; }
+      #sortSelect { min-height: 44px; font-size: 14px; max-width: 55%; padding-left: 8px; }
+      #resultCount { font-size: 15px; }
+      #clearFilterBtn { min-height: 44px; font-size: 13px; }
+      #productGrid { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      .deal-card { display: grid; grid-template-columns: 104px minmax(0, 1fr); border-radius: 14px; }
+      .deal-card:hover { transform: none; }
+      .photo-area { padding: 44px 8px 32px; align-items: flex-start; }
+      .photo-area img { height: 124px; }
+      .photo-area button { min-height: 44px; min-width: 44px; right: 8px; top: 4px; font-size: 12px; }
+      .badge-tag { left: 4px; right: 4px; bottom: 8px; font-size: 12px; padding: 4px; text-align: center; }
+      .product-details { padding: 12px; }
+      .product-details h3 { font-size: 16px; line-height: 1.45; }
+      .product-details > p { display: block; overflow: visible; font-size: 13px; line-height: 1.5; }
+      .product-details > div:first-child span { font-size: 12px; }
+      .ball-unit-price { font-size: 13px; line-height: 1.6; margin-top: 4px; }
+      .ball-unit-price strong { font-size: 20px; line-height: 1.4; letter-spacing: -.04em; }
+      .product-price { padding: 8px; }
+      .product-price > div:first-child { flex-wrap: wrap; font-size: 12px; }
+      .product-price > div:nth-child(2) { font-size: 17px; overflow-wrap: anywhere; }
+      .product-details > div:last-child button, .btn-buy-b { min-height: 44px; font-size: 14px; }
+      #compareChips { flex-wrap: nowrap; max-width: 100%; overflow-x: auto; }
+      #compareChips > * { flex-shrink: 0; }
+      #compareBar button { min-height: 44px; font-size: 14px; }
+      #compareModal { padding: 8px; }
+      #compareModal > div { padding: 14px; max-height: 85dvh; }
+      #compareModalTitle { font-size: 17px; }
+      #compareModal button { min-height: 44px; flex-shrink: 0; }
+      footer { font-size: 13px !important; margin-top: 32px !important; }
+    }
+    @media (max-width: 359px) {
+      .deal-card { grid-template-columns: 84px minmax(0, 1fr); }
+      .product-details { padding: 10px; }
+      .photo-area img { height: 104px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 상단 고정 헤더 -->
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-gray-200">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 flex-wrap">
+        <a href="#top" onclick="resetAllFilters(event)" class="inline-flex items-center gap-1.5 text-xl sm:text-2xl font-black tracking-tight text-gray-900 no-underline">
+          <span>테니스<span class="text-[#193eb7]">핫딜</span></span>
+        </a>
+        <span class="text-[11px] sm:text-xs font-extrabold text-[#193eb7] bg-blue-50 border border-blue-200 px-2.5 py-1 rounded-md">
+          2026.11.20 업데이트
+        </span>
+      </div>
+
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- 관심상품 찜하기 모아보기 버튼 -->
+        <button
+          type="button"
+          id="wishlistToggleBtn"
+          onclick="toggleWishlistMode()"
+          aria-pressed="false"
+          class="inline-flex items-center gap-1 text-xs sm:text-sm font-bold px-3 py-2 rounded-lg border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 cursor-pointer transition"
+        >
+          <span id="wishlistHeartIcon" class="text-rose-500">♥</span>
+          <span>관심상품</span>
+          <span id="wishlistCount" class="px-1.5 py-0.2 rounded-full bg-gray-100 text-gray-900 text-xs font-extrabold">0</span>
+        </button>
+
+        <!-- 카카오톡 / 링크 공유 버튼 -->
+        <button
+          type="button"
+          onclick="shareSiteLink()"
+          class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-extrabold px-3 py-2 rounded-lg bg-[#fee500] hover:bg-[#f5dc00] text-[#191919] border border-[#ebd200] cursor-pointer transition"
+        >
+          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3C6.48 3 2 6.58 2 11c0 2.84 1.87 5.33 4.68 6.77-.15.54-.97 3.51-1 3.74 0 .05.02.1.06.13.04.03.1.04.15.02.2-.03 4.07-2.69 4.71-3.14.46.07.93.1 1.4.1 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/>
+          </svg>
+          <span>공유</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 메인 콘텐츠 -->
+  <main id="top" class="max-w-6xl mx-auto px-4 pt-5 sm:pt-7">
+    <!-- 히어로 배너 영역 -->
+    <section class="mb-5">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-gray-900 m-0">
+            테니스 장비 가격 카탈로그
+          </h1>
+          <p class="text-sm sm:text-base text-gray-500 mt-1.5 mb-0">
+            레벨·플레이스타일별 라켓 비교부터 테니스공·오버그립 개당 단가까지 한눈에 확인하세요.
+          </p>
+        </div>
+        <div class="text-xs text-gray-500 font-medium">
+          총 <strong class="text-gray-900 font-extrabold" id="catalogCount">89개</strong> 등록 상품 · 누구나 쿠폰 적용가는 확인 후 표시
+        </div>
+      </div>
+    </section>
+
+    <!-- 1단: 대분류 카테고리 탭 (전체 / 테니스라켓 / 테니스공 / 오버그립) -->
+    <nav aria-label="대분류 상품 카테고리" class="flex items-center gap-5 sm:gap-7 border-b border-gray-200 overflow-x-auto no-scrollbar">
+      <!-- JS로 동적 생성 -->
+    </nav>
+
+    <!-- 2단: 선택된 대분류에 따라 동적으로 변하는 세부 필터 패널 -->
+    <section aria-label="세부 스펙 및 브랜드 필터" class="bg-gray-50 border border-gray-200 rounded-2xl p-3.5 sm:p-4 mt-4 space-y-3">
+      <!-- 2-1. 테니스라켓 전용: 레벨(입문용/올라운드/상급자) + 플레이스타일 필터 -->
+      <div id="racketSubFilters" class="space-y-2.5">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs font-extrabold text-gray-500 w-16 shrink-0">추천 레벨</span>
+          <div id="levelPills" class="flex items-center gap-1.5 flex-wrap"></div>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs font-extrabold text-gray-500 w-16 shrink-0">플레이스타일</span>
+          <div id="stylePills" class="flex items-center gap-1.5 flex-wrap"></div>
+        </div>
+      </div>
+
+      <!-- 2-2. 공/그립 전용 단가 비교 안내 바 -->
+      <div id="ballPacks" class="flex flex-wrap gap-2"></div>
+      <div id="consumableGuideBar" class="hidden bg-blue-50/80 border border-blue-200 rounded-xl px-3.5 py-2.5 flex flex-wrap items-center justify-between gap-2">
+        <div class="text-xs sm:text-sm font-bold text-[#193eb7]">
+          💡 세트 수량 기준으로 <span class="underline">1개당 단가</span>가 자동 계산되어 표시됩니다.
+        </div>
+        <button
+          type="button"
+          onclick="applyUnitPriceSort()"
+          class="text-xs font-extrabold px-3 py-1.5 rounded-lg bg-[#193eb7] text-white hover:bg-[#133091] cursor-pointer transition"
+        >
+          쿠폰 적용 단가순 정렬 ›
+        </button>
+      </div>
+
+      <!-- 2-3. 공통: 브랜드 필터 + 모델명/스펙 검색창 -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2.5 pt-1 border-t border-gray-200/80">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="text-xs font-extrabold text-gray-500 w-16 shrink-0">브랜드</span>
+          <div id="brandPills" class="flex items-center gap-1.5 flex-wrap"></div>
+        </div>
+
+        <div class="relative w-full md:w-72 shrink-0">
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="모델명, 무게(300g), 헤드(98) 검색..."
+            aria-label="상품 검색"
+            class="w-full pl-9 pr-3 py-2 text-sm bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-[#193eb7] font-medium"
+          >
+          <svg class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.3-4.3"></path>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 상품 수량 및 정렬 컨트롤 -->
+    <div class="flex items-center justify-between gap-2 my-4">
+      <div class="flex items-center gap-2 flex-wrap">
+        <h2 id="resultCount" class="text-base sm:text-lg font-extrabold text-gray-900 m-0"></h2>
+        <button
+          type="button"
+          id="clearFilterBtn"
+          onclick="resetAllFilters()"
+          class="hidden text-xs font-bold text-gray-500 hover:text-gray-900 underline cursor-pointer bg-transparent border-0 p-0"
+        >
+          필터 초기화
+        </button>
+      </div>
+
+      <select
+        id="sortSelect"
+        aria-label="상품 정렬"
+        class="text-xs sm:text-sm font-bold text-gray-800 bg-white border border-gray-300 rounded-lg px-3 py-2 cursor-pointer focus:outline-none focus:border-[#193eb7]"
+      >
+        <option value="can">1캔당 낮은순</option>
+        <option value="reviews">인기순 · 리뷰 수</option>
+        <option value="price-asc">쿠폰 적용가 낮은순</option>
+        <option value="price-desc">쿠폰 적용가 높은순</option>
+        <option value="unit-asc">쿠폰 적용 단가순</option>
+        <option value="rating">평점 높은순</option>
+      </select>
+    </div>
+
+    <!-- 상품 카드 그리드 -->
+    <section id="productGrid" aria-label="상품 목록" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
+      <!-- JS로 동적 렌더링 -->
+    </section>
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="max-w-6xl mx-auto px-4 mt-14 pt-6 border-t border-gray-200 text-xs sm:text-sm text-gray-500 leading-relaxed">
+    <p class="m-0">
+      네이버 쇼핑 커넥트 활동의 일환으로, 판매 발생 시 수수료를 제공받습니다.<br>
+      표시 가격은 <strong class="text-gray-700">2026.11.20 조회일 기준</strong> 판매처 상품가이며, 배송비와 선택 옵션에 따라 달라질 수 있습니다.
+    </p>
+  </footer>
+
+  <!-- 하단 고정 스펙 비교함 바 -->
+  <div id="compareBar" class="hidden fixed bottom-0 inset-x-0 z-40 bg-gray-900 text-white border-t border-gray-700 shadow-2xl">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="text-xs font-black px-2.5 py-1 rounded bg-[#fee500] text-gray-900 shrink-0">
+          스펙 비교함 (<span id="compareCount">0</span>/3)
+        </span>
+        <div id="compareChips" class="flex items-center gap-1.5 flex-wrap"></div>
+      </div>
+
+      <div class="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+        <button
+          type="button"
+          onclick="clearCompare()"
+          class="text-xs font-bold px-3 py-1.5 rounded-lg border border-gray-600 text-gray-300 hover:bg-gray-800 cursor-pointer"
+        >
+          비우기
+        </button>
+        <button
+          type="button"
+          onclick="openCompareModal()"
+          class="text-xs font-extrabold px-4 py-1.5 rounded-lg bg-[#193eb7] hover:bg-blue-600 text-white cursor-pointer"
+        >
+          한눈에 비교표 보기 ›
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 스펙 비교표 모달 -->
+  <div id="compareModal" onclick="if(event.target === this) closeCompareModal()" class="hidden fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="compareModalTitle">
+    <div class="bg-white text-gray-900 rounded-2xl max-w-4xl w-full p-5 sm:p-6 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-gray-200 pb-3.5 mb-4">
+        <div>
+          <span class="text-[11px] font-extrabold text-[#193eb7] bg-blue-50 px-2 py-0.5 rounded">SPEC COMPARE</span>
+          <h3 id="compareModalTitle" class="text-lg sm:text-xl font-black m-0 mt-1">선택한 테니스 장비 스펙·단가 비교표</h3>
+        </div>
+        <button
+          type="button"
+          onclick="closeCompareModal()"
+          class="text-sm font-extrabold px-3 py-1.5 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 cursor-pointer"
+        >
+          닫기 ✕
+        </button>
+      </div>
+      <div id="compareTableContainer" class="overflow-x-auto"></div>
+    </div>
+  </div>
+
+  <!-- 공유 완료 토스트 메시지 -->
+  <div id="toast" role="status" aria-live="polite" class="hidden fixed top-16 left-1/2 -translate-x-1/2 z-50 bg-gray-900 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-full shadow-lg">
+    링크가 복사되었습니다! 카카오톡 채팅방에 바로 붙여넣어 공유하세요.
+  </div>
+
+  <script>
+    /**
+     * 1. 대분류 및 세부 필터 상수 정의
+     */
+    const categories = ['전체', '테니스라켓', '테니스공', '오버그립'];
+    const levelOptions = ['전체 레벨', '입문용 (275g↓)', '올라운드 (280~300g)', '상급자 (305g↑)'];
+    const styleOptions = ['전체 스타일', '파워·스핀', '올라운드', '컨트롤'];
+    const brandOptions = ['전체 브랜드', '요넥스', '윌슨', '바볼랏', '헤드', '기타'];
+
+    /**
+     * 2. 기존 24개 상품 원본 데이터 + 레벨/플레이스타일/수량 메타 매핑
+     * 원본 구조: [catId, name, opt, tag, price, rating, reviews, seller, urlCode, imgPath]
+     */
+    const rawItems = [
+      [1, '요넥스 이존 98 블루', '2025 · 98in² · 305g', '98헤드 선호', 344000, 5, 11, '스포츠진', 'x3cn2Jjg', '20250314_204/1741940525093AyEuo_JPEG/76073426075990282_1525997282.jpg', '상급자 (305g↑)', '올라운드·반발력', '올라운드', 1],
+      [1, '요넥스 이존 알파 100', '2025 · 100in² · 275g', '가벼운 입문용', 200200, 5, 1, '위드테니스', 'Fz8ek2gJ', '20250507_299/1746543922803rjkKM_JPEG/1231965776165954_1128875119.jpg', '입문용 (275g↓)', '파워·편안함', '파워·스핀', 1],
+      [2, '윌슨 챔피언쉽', '3구 × 1캔 · 한 캔씩 간편', '인기 시합구', 7700, 4.89, 18, 'N펀키보이', 'xqbzkHrX', '20221223_128/16717585241227OU3F_JPEG/72894419845370890_575765551.jpg', '', '', '', 3],
+      [2, '스포홀릭 연습용 테니스공', '6개입 · 반복 연습용', '가성비 연습구', 5400, 4.92, 25, '스포홀릭', '5kPTzaFz', '20251125_20/1764059114946DPPF2_JPEG/90699206474746533_559912271.jpeg', '', '', '', 6],
+      [3, '보임 프로타키 가마그립', '타키 타입 · 6개입', '쫀쫀한 그립', 6000, 4.89, 9, 'CS스포츠', 'G7NkRctb', '20240314_294/1710391120113dSgR0_PNG/111526903769373343_409181969.png', '', '', '', 6],
+      [3, 'VOLAR 프로 그립 테이프', '벌크 16개입 · 9컬러', '잦은 교체용', 11900, 4.73, 332, 'VOLAR', '5ulrL0Hj', '20230111_112/16734307310636xDvK_JPEG/74566510776404008_1385532242.jpg', '', '', '', 16],
+      [1, '헤드 래디컬', '2025 · 옵션 선택', '', 238000, null, 37, '', 'GCJm8RmH', '20250925_77/1758795538673k3tfC_JPEG/92928524765986082_605690641.jpg', '올라운드 (280~300g)', '컨트롤·올라운드', '올라운드', 1],
+      [1, '윌슨 클래시 V3 주니어', '2025 · 25/26인치', '', 153000, null, 3, '', '5p0PSxK7', '20260118_7/1768739981502yu3H1_JPEG/18068790574964315_1293153095.jpg', '입문용 (275g↓)', '컨트롤·편안함', '컨트롤', 1],
+      [1, '바볼랏 이보크 105', 'EVOKE 105', '', 62900, null, 6, '', 'x8kZ2Roq', '20230816_274/1692160160180VLnMy_JPEG/15002268938651776_708734393.jpg', '입문용 (275g↓)', '파워·스핀', '파워·스핀', 1],
+      [1, '헤드 CY-P', '16×19', '', 69970, null, 24, '', 'xZKwe2nv', '20250609_269/1749437323512HRHkD_JPEG/2317067676983035_1479359373.jpg', '입문용 (275g↓)', '파워·스핀', '파워·스핀', 1],
+      [1, '헤드 PWR', '2026 · 115 · 230g', '', 260100, null, 1, '', 'GT4NpY8x', '20260420_200/1776683528563WcmG5_PNG/10580551562720220_1222754990.png', '입문용 (275g↓)', '파워·편안함', '파워·스핀', 1],
+      [1, '바볼랏 펄션 팀 105', '260g', '', 99000, null, 1, '', 'FLEfm8rQ', '20240222_245/1708605750561fSvpS_JPEG/109741646292532921_189599796.jpg', '입문용 (275g↓)', '파워·편안함', '파워·스핀', 1],
+      [1, '바볼랏 퓨어드라이브 100', '300g', '', 270000, null, 40, '', '5UVLW7u3', '20230702_81/1688285402539GXwAy_JPEG/1751396823540577_2141489249.jpg', '올라운드 (280~300g)', '파워·스핀', '파워·스핀', 1],
+      [1, '요넥스 브이코어 95', '2024 · G2 · 310g', '', 336000, null, 1, '', '5dhis6LW', '20250204_273/1738629006206TVfcs_PNG/72761864344221636_459821889.png', '상급자 (305g↑)', '파워·스핀', '파워·스핀', 1],
+      [1, '헤드 래디컬 MP 팜트리', '2025 · 98 · 300g', '', 286400, null, 2, '', 'x7eWbTYL', '20250723_226/17532746280921hxms_PNG/56787165029759675_1223723983.png', '올라운드 (280~300g)', '컨트롤·올라운드', '올라운드', 1],
+      [1, '요넥스 브이코어 FEEL', '2024 · G2 · 250g', '', 179000, null, 3, '', '56XnGps0', '20250204_263/1738629106567sQvRx_PNG/72761883726100984_1900523618.png', '입문용 (275g↓)', '파워·스핀', '파워·스핀', 1],
+      [1, '윌슨 블레이드 V10 주니어', '2026 · 25/26인치', '', 209000, null, 2, '', '5Qsg1T6M', '20260426_251/1777176732354mevW1_PNG/11073755364390463_178569095.png', '입문용 (275g↓)', '컨트롤·편안함', '컨트롤', 1],
+      [1, '요넥스 이존 에이스', '2025 · 260g', '', 156000, null, 4, '', '5CCguPQ2', '20250314_35/1741940675758fcKEl_PNG/2610163519117158_148731810.png', '입문용 (275g↓)', '파워·편안함', '파워·스핀', 1],
+      [1, '바볼랏 이보크 팀 윔블던', '102 · 270g · 기본줄 포함', '', 99000, null, 1, '', 'xHEcOT5i', '20240815_159/1723711197292Vk7TY_JPEG/57184066077185942_1360478141.jpg', '입문용 (275g↓)', '파워·편안함', '파워·스핀', 1],
+      [1, '바볼랏 퓨어에어로 S.LITE', '100 · 255g', '', 279000, null, 2, '', 'x6J2ClL4', '20260318_203/1773795074803U2E6u_JPEG/107928017936290013_2082629769.jpg', '입문용 (275g↓)', '파워·스핀', '파워·스핀', 1],
+      [1, '요넥스 퍼셉트 100', '2025 · 300g · G2', '', 336000, null, 2, '', 'Gwf6TkZp', '20250821_158/1755755474716sxGgm_JPEG/9930214543778915_597363245.jpg', '올라운드 (280~300g)', '컨트롤', '컨트롤', 1],
+      [1, '요넥스 퍼셉트 97L', '290g · G2', '', 336000, null, 4, '', 'xllfeZAw', '20250204_192/1738629592845OfSUf_PNG/72762499048374461_522418824.png', '올라운드 (280~300g)', '컨트롤', '컨트롤', 1],
+      [1, '요넥스 퍼셉트 97', '2025 · 310g · G2', '', 336000, null, 2, '', '5Auvside', '20250821_104/1755754705899kf6tA_JPEG/10453320884729473_235652325.jpg', '상급자 (305g↑)', '컨트롤', '컨트롤', 1],
+      [1, '바볼랏 부스트 라파 나달', '2024 · 102 · 260g', '', 170000, null, 0, '', 'xk9gyflJ', '20240728_42/1722156647438wHSY7_JPEG/10641068244788237_1984307547.jpg', '입문용 (275g↓)', '파워·스핀', '파워·스핀', 1]
+    ];
+
+    rawItems.push(...[[2, "프린스 챔피온쉽", "1캔 2구 · 기본배송 3,000원", "", 3390, null, null, "젤리스포츠", "FkafJLXL", "20241106_209/1730877790025Ay1DX_JPEG/65010712149042956_34513167.jpg", "", "", "", 2], [2, "아이워너 연습구", "10구", "", 9500, null, null, "아이워너 공식몰", "xbK2EANp", "20250714_192/1752474036740VHrYp_JPEG/3900004802594763_82411905.jpg", "", "", "", 10], [2, "아이워너 고탄성 연습구", "10구", "", 9500, null, null, "아리프 스포츠", "FYriTqcb", "20250714_189/1752476785447JYNts_JPEG/86609616570374651_903096174.jpg", "", "", "", 10], [2, "낫소 짜르투어", "36캔 × 2구", "", 138240, null, null, "위드테니스", "G7NkRCiO", "20250825_43/1756122827093t6abq_JPEG/70450931904140937_1658657916.jpg", "", "", "", 72], [2, "던롭 ATP 챔피언쉽", "2025 · 36캔 × 2구", "", 144000, null, null, "위드테니스", "GP2R5lMO", "20250725_40/1753448682060rM72P_JPEG/105517075563353917_1450323483.jpg", "", "", "", 72], [2, "요넥스 머슬파워 30", "오렌지볼 · 60구", "", 148500, null, null, "위드테니스", "FKGeh05u", "20230415_240/1681549992432PalgV_JPEG/29486718256403523_291418166.jpg", "", "", "", 60], [2, "윌슨 트레이너", "무압구 · 72구", "", 159000, null, null, "재팬준픽", "5xgf5an3", "20260122_94/1769047057450LKHpF_JPEG/103179964591988896_48998677.jpeg", "", "", "", 72], [2, "윌슨 챔피언십 엑스트라듀티", "36구", "", 75500, null, null, "재팬준픽", "F5sy9aRk", "20260729_74/1785332125001fsxtV_JPEG/17488468142742259_602480473.jpg", "", "", "", 36], [2, "윌슨 롤랑가로스 클레이", "72구", "", 238140, null, null, "위드테니스", "GsBIEooF", "20250619_191/1750339533557b85Xf_PNG/84472322690465179_204077868.png", "", "", "", 72], [2, "Penn 핑크", "3구", "", 12000, null, null, "Bestyours", "5WURx9cI", "20240826_140/1724671097281qBiaW_JPEG/53762268537549936_458934365.jpeg", "", "", "", 3], [1, "요넥스 이존 알파", "2025 · 275g · 블루", "", 199200, null, null, "스포츠진", "5SKVOKhB", "20250314_72/17419405338865Dw2v_PNG/6743133014786415_1430157181.png", "", "", "", 1], [1, "헤드 챌린지 라이트", "107 · 260g", "", 94250, null, null, "위드테니스", "5fd82d1R", "20260723_193/1784811151138UwEIA_JPEG/28125593095148370_2085217643.jpg", "", "", "", 1], [1, "헤드 그래비티 주니어", "2025 · 26인치", "", 158000, null, null, "위드테니스", "5EC2jC9H", "20250117_42/17371170926313WEi3_PNG/6962913465373820_1087426538.png", "", "", "", 1], [1, "헤드 코코 주니어", "2025 · 17/19/21인치", "", 39900, null, null, "위드테니스", "551qT12O", "20250121_103/1737467633380ngA2C_PNG/71600504492934491_291892682.png", "", "", "", 1], [1, "헤드 노박 주니어", "2025 · 17/19/21인치", "", 37800, null, null, "위드테니스", "5Z1hL12s", "20250121_23/1737465889046AMJh4_PNG/47596350740746143_1262604833.png", "", "", "", 1], [1, "바볼랏 부스트 윔블던", "2025 · 105 · 260g", "", 180000, null, null, "위드테니스", "FP8QA8AN", "20250619_260/1750338596528SnFlU_PNG/75726961207063169_620217906.png", "", "", "", 1]]);
+    rawItems.push(...[[1, "바볼랏 에보 드라이브 투어 102 285g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 234000, null, 0, "위드테니스", "GjysU0CE", "20251121_23/1763695960155XhkUj_JPEG/18222942906125919_211150513.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어드라이브 GEN11 107 285g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 306000, null, 0, "위드테니스", "FmGLdy5i", "20250117_81/1737117979990euh6H_PNG/71250805412776560_1780973907.png", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어드라이브 GEN11 100 285g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 306000, null, 0, "위드테니스", "5dhisHdY", "20250117_81/1737117979990euh6H_PNG/71250805412776560_1780973907.png", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어드라이브 100 300g 30주년 2024", "옵션·쿠폰 조건 상세 확인 필요", "", 300000, null, 0, "위드테니스", "5o0ea3zO", "20240401_296/1711972491522QXWa7_JPEG/113108334208126684_1905610458.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어드라이브 슈퍼라이트 100 255g 2021", "옵션·쿠폰 조건 상세 확인 필요", "", 200000, null, 0, "위드테니스", "FXnbtQNP", "20261009_152/1791525593449rAeJQ_JPEG/11519151408636193_1390055031.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어드라이브 GEN11 윔블던 100 300g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 325000, null, 0, "위드테니스", "FjmQJFZH", "20250520_271/1747746007743IG90d_JPEG/81878975806490253_338273392.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 나달 JR 주니어 19·21 2024", "옵션·쿠폰 조건 상세 확인 필요", "", 63000, null, 0, "위드테니스", "574FPod0", "20260906_276/1788703371297SHRIq_JPEG/102228440076028756_709825345.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어 에어로 라이트 270g 101491", "옵션·쿠폰 조건 상세 확인 필요", "", 276500, null, 0, "도쿄에이트재팬", "5EC2jI2F", "20260325_271/1774372549329xNuv7_JPEG/1291213207031756_1735538302.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 에보 드라이브 102 270g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 234000, null, 0, "위드테니스", "5IfZqn5C", "20251121_192/1763695735954nIkKL_JPEG/97828692127101951_1138648590.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 윔블던 이보크 팀 102 270g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 108000, null, 0, "위드테니스", "FRo5RKmG", "20250620_240/1750423505878qVc19_JPEG/75811870490770973_1196889019.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어에어로 라파 JR 주니어 26 2024", "옵션·쿠폰 조건 상세 확인 필요", "", 132000, null, 0, "위드테니스", "FSvrqpTo", "20240324_121/1711260390220fLuDK_JPEG/112396224979627160_1935491811.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어 스트라이크 GEN4 97 310g 카본그레이 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 316000, null, 0, "위드테니스", "F3EyVzq1", "20250912_261/1757678822322FkgSt_PNG/104826322979264440_1246781635.png", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어드라이브 GEN11 아마섬유 100 300g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 315000, null, 0, "위드테니스", "GCJm8rtx", "20250117_81/1737117979990euh6H_PNG/71250805412776560_1780973907.png", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어드라이브 GEN11 아마섬유 98 305g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 324000, null, 0, "위드테니스", "GntDkwwT", "20250117_81/1737117979990euh6H_PNG/71250805412776560_1780973907.png", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어드라이브 GEN11 슈퍼라이트 100 255g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 288000, null, 0, "위드테니스", "GKIR6ssE", "20250117_81/1737117979990euh6H_PNG/71250805412776560_1780973907.png", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 에보 드라이브 라이트 104 255g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 234000, null, 0, "위드테니스", "GzdNUvAc", "20251221_146/1766323178779qwioA_JPEG/100456017854066020_1448527587.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어에어로 100 300g 2023", "옵션·쿠폰 조건 상세 확인 필요", "", 245000, null, 0, "위드테니스", "xCjogSTt", "20261023_262/1792757601187CAUfG_JPEG/7841547323573246_402451932.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어 스트라이크 GEN4 98 305g 카본그레이 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 298000, null, 0, "위드테니스", "xWISHPfy", "20250912_9/17576799322206WT23_JPEG/91812875290590524_1659317064.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어 스트라이크 GEN4 100 300g 카본그레이 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 298000, null, 0, "위드테니스", "xdM6sOQJ", "20250912_261/1757678822322FkgSt_PNG/104826322979264440_1246781635.png", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어 스트라이크 GEN4 100 305g 카본그레이 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 298000, null, 0, "위드테니스", "xoGPXv05", "20250912_261/1757678822322FkgSt_PNG/104826322979264440_1246781635.png", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 Drive Junior 23인치 11세대 블루", "옵션·쿠폰 조건 상세 확인 필요", "", 202230, null, 0, "넥스트크레딧", "xB708x3u", "20260519_206/1779143763186mkmOw_JPEG/113276695474789181_601865590.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 퓨어에어로 98 101567 2026", "옵션·쿠폰 조건 상세 확인 필요", "", 300000, null, 0, "단테38", "51uklVbA", "20260214_262/1771039538819Bo8AF_JPEG/7218180624882694_1696589367.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "바볼랏 칼리토스 주니어 2026", "옵션·쿠폰 조건 상세 확인 필요", "", 67500, null, 0, "위드테니스", "5kPTzFCc", "20260912_249/1789215638697CzH44_JPEG/123348472191264454_724924922.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 이존 알파 SL 100 245g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 200200, null, 0, "위드테니스", "FTdebgya", "20250506_201/17465425305292vo7H_JPEG/72174164525785046_317636389.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 이존 알파 L 100 260g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 200200, null, 0, "위드테니스", "FHOWhj5N", "20250506_1/1746543329375LR6OF_JPEG/73126528177775217_1375341721.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 이존 110 255g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 237000, null, 0, "위드테니스", "FJOu1UaD", "20250506_93/1746543130029SQdzQ_JPEG/72174764000240758_414566968.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 이존 115 250g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 237000, null, 0, "위드테니스", "FtopB3Ao", "20250506_20/1746542923657fDPPd_JPEG/80675864704342594_1610491615.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 이존 플레이 100 265g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 123370, null, 0, "위드테니스", "F5sy9iGk", "20250303_172/1741006481054fgTRP_JPEG/33910950683042792_1975840301.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 이존 ACE 102 260g 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 157000, null, 0, "위드테니스", "GcA6QOZs", "20250506_4/1746543573846ocKN4_JPEG/80676346135261082_2039047208.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 이존 에이스 G2 260g 아쿠아블랙 2024", "옵션·쿠폰 조건 상세 확인 필요", "", 138000, null, 0, "요넥스공식인증점 스포츠진", "GEdHyEp8", "20250204_84/1738628491764H5GyE_PNG/11983271560443862_752531888.png", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 이존 주니어 26 JR 2025", "옵션·쿠폰 조건 상세 확인 필요", "", 128200, null, 0, "위드테니스", "GUTd325J", "20250127_251/1737961537182WByYR_JPEG/11316316956380498_1277160.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1]]);
+
+    rawItems.push(...[[1, "요넥스 EZONE 100 블래스트 블루", "옵션·쿠폰 조건 상세 확인 필요", "", 752670, null, 0, "글로벌픽엔셀", "xdM6sRgz", "20260510_292/1778396700182yEEmM_JPEG/112529602248647755_1221791396.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 EZONE 98 블래스트 블루", "옵션·쿠폰 조건 상세 확인 필요", "", 739980, null, 0, "글로벌픽엔셀", "xcg3NGCF", "20260510_278/1778396891103zSSiH_JPEG/10098913999717079_1098473698.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 EZONE 25 딥 블루", "옵션·쿠폰 조건 상세 확인 필요", "", 250920, null, 0, "글로벌픽엔셀", "xB708cmw", "20260510_225/17783960979641KJh5_JPEG/15271529949842435_513826350.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 EZONE 98L 7세대 4-1/8", "옵션·쿠폰 조건 상세 확인 필요", "", 376560, null, 0, "넥스트크레딧", "x9VbgHGW", "20260519_193/17791430098003RYpx_JPEG/83571075092062350_748293992.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 EZONE Feel 언스트렁 4-3/8", "옵션·쿠폰 조건 상세 확인 필요", "", 258300, null, 0, "넥스트크레딧", "5AuvsUSb", "20260519_252/1779147495883WxmeL_JPEG/21829049677285429_316944494.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 EZONE ACE 블래스트 블루 그립 2", "옵션·쿠폰 조건 상세 확인 필요", "", 222840, null, 0, "글로벌픽엔셀", "5vJj6gep", "20260510_64/1778396090208rPB13_JPEG/112528894171370631_1674402365.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1], [1, "요넥스 EZONE SL 블래스트 블루 그립 1", "옵션·쿠폰 조건 상세 확인 필요", "", 747900, null, 0, "글로벌픽엔셀", "5p0PSpsL", "20260510_204/1778395474774GJjTP_JPEG/80339488566883817_898322044.jpg", "분류 확인 중", "분류 확인 중", "분류 확인 중", 1]]);
+
+    rawItems.push(...[[2, "헤드 투어 KTA ATP WTA", "1캔 × 4구", "", 14700, null, 0, "위드테니스", "xk9gytFZ", "20240924_260/1727179330595YPyPm_PNG/7128095224879522_764635625.png", "", "", "", 4], [2, "헤드 TIP 그린", "72구", "", 190000, null, 0, "위드테니스", "FwGXCbVF", "20240920_300/17268320984635DHup_PNG/60965045563298658_25247754.png", "", "", "", 72], [2, "헤드 TIP 오렌지", "72구", "", 190000, null, 0, "위드테니스", "FQut80dV", "20240920_261/17268319961881nDHE_PNG/30388869939462276_1388706266.png", "", "", "", 72], [2, "헤드 투어 XT", "1박스 18캔 × 4구", "", 250000, null, 0, "위드테니스", "54KpO612", "20240920_2/1726831125145lKEac_PNG/1393059255087181_2056853669.png", "", "", "", 72], [2, "헤드 TIP 레드", "48구", "", 140000, null, 0, "위드테니스", "GWWukCKv", "20240920_122/1726831750920HVpEF_PNG/60964604047982584_440737653.png", "", "", "", 48], [2, "헤드 투어 KTA ATP ITF", "1박스 18캔 × 4구", "", 237600, null, 0, "위드테니스", "GSQesQID", "20241101_228/17304612147779Dgjz_JPEG/64594186066173497_1350868176.jpg", "", "", "", 72], [2, "헤드 투어 XT", "1캔 × 4구", "", 14700, null, 0, "위드테니스", "5Z1hL1wa", "20240920_272/1726830869072JyAAw_PNG/60963714356050141_1742255003.png", "", "", "", 4], [2, "헤드 투어 KTA ATP WTA", "1박스 18캔 × 4구", "", 249000, null, 0, "위드테니스", "xrzwX7yE", "20240924_262/1727179194298ACCdk_PNG/11008185144658829_957142956.png", "", "", "", 72], [2, "헤드 트레이너 무압구", "60구", "", 145000, null, 0, "위드테니스", "xbK2EFnw", "20260815_232/1786757525721Rpfnl_JPEG/36086334857881081_1107375476.jpg", "", "", "", 60], [2, "헤드 트레이너 폴리백", "72구", "", 200000, null, 0, "위드테니스", "xKy84Vzn", "20240920_282/1726831364817SOyJK_PNG/41724654056707358_1926987832.png", "", "", "", 72], [2, "헤드 챔피온쉽", "1캔 × 2구", "", 4390, null, 0, "젤리스포츠", "xUZ5H3FC", "20241106_249/1730872342617KtXRO_JPEG/65005162170153957_1114057168.jpg", "", "", "", 2]]);
+    // 구조화된 상품 객체 배열 생성
+    const products = rawItems.map((row, idx) => {
+      const [catId, name, opt, tag, price, rating, reviews, seller, urlCode, imgPath, level, styleLabel, styleGroup, qty, publicCouponPrice = null] = row;
+      const comparisonPrice = Number.isInteger(publicCouponPrice) && publicCouponPrice >= 0 && publicCouponPrice <= price ? publicCouponPrice : null;
+      const cans = catId === 2 ? Number(opt.match(/(\d+)캔/)?.[1] || 0) : 0;
+      const ballBrand = ['윌슨','헤드','퍼펙트'].find(b => name.includes(b)) || '기타';
+      const ballPrice = comparisonPrice ?? price;
+      const ballInfo = catId === 2 ? `<strong style="display:block">${cans ? '1캔당 '+Math.round(ballPrice/cans).toLocaleString()+'원' : '공 '+qty+'개 구성'}</strong>${comparisonPrice === null ? '판매가 기준' : '쿠폰 적용 기준'} · 배송비 별도` : '';
+      const unitPrice = comparisonPrice === null ? null : Math.round(comparisonPrice / qty);
+      return {
+        id: `item-${idx}`,
+        catId,
+        categoryName: categories[catId],
+        name,
+        opt,
+        tag,
+        price,
+        rating,
+        reviews,
+        seller,
+        url: `https://naver.me/${urlCode}`,
+        img: `https://shop-phinf.pstatic.net/${imgPath}`,
+        level,
+        styleLabel,
+        styleGroup,
+        qty,
+        unitPrice, comparisonPrice, cans, ballInfo, ballBrand,
+        brand: detectBrand(name)
+      };
+    });
+
+    function detectBrand(name) {
+      for (const b of ['요넥스', '윌슨', '바볼랏', '헤드']) {
+        if (name.includes(b)) return b;
+      }
+      return '기타';
+    }
+
+    /**
+     * 3. 상태 관리 (localStorage 기반 관심상품 영구 저장)
+     */
+    const STORAGE_KEY = 'tennishotdeal_wishlist_v1';
+    let wishlist = [];
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) wishlist = JSON.parse(saved);
+    } catch (e) {
+      wishlist = [];
+    }
+
+    let state = {
+      category: 0,           // 0: 전체, 1: 테니스라켓, 2: 테니스공, 3: 오버그립
+      level: '전체 레벨',
+      style: '전체 스타일',
+      brand: '전체 브랜드',
+      keyword: '',
+      sort: 'reviews',
+      wishlistOnly: false,
+      compareIds: []
+    };
+
+    /**
+     * 4. 필터 & 정렬 유틸리티
+     */
+    function getFilteredProducts() {
+      const q = state.keyword.trim().toLowerCase();
+
+      return products
+        .filter(item => {
+          if (state.wishlistOnly && !wishlist.includes(item.id)) return false;
+          if (state.category !== 0 && item.catId !== state.category) return false;
+
+          // 라켓 세부 필터 적용 (전체 또는 테니스라켓 탭일 때)
+          if (state.category === 0 || state.category === 1) {
+            if (state.level !== '전체 레벨' && item.level !== state.level) return false;
+            if (state.style !== '전체 스타일' && item.styleGroup !== state.style) return false;
+          }
+
+          if (state.category === 2 && state.pack && (item.cans > 1 ? '박스' : item.cans === 1 ? '낱개' : '기타 포장') !== state.pack) return false;
+          if (state.brand !== '전체 브랜드' && (state.category === 2 ? item.ballBrand : item.brand) !== state.brand) return false;
+
+          if (q) {
+            const haystack = `${item.name} ${item.opt} ${item.tag} ${item.level} ${item.styleLabel} ${item.brand}`.toLowerCase();
+            if (!haystack.includes(q)) return false;
+          }
+          return true;
+        })
+        .sort((a, b) => {
+          if (state.sort === 'can') {
+            const rank = item => item.cans ? (item.comparisonPrice ?? item.price) / item.cans : Infinity;
+            return rank(a) - rank(b) || 0;
+          }
+          if (['price-asc','price-desc','unit-asc'].includes(state.sort) && (a.comparisonPrice === null || b.comparisonPrice === null)) return Number(a.comparisonPrice === null) - Number(b.comparisonPrice === null);
+          if (state.sort === 'price-asc') return a.comparisonPrice - b.comparisonPrice;
+          if (state.sort === 'price-desc') return b.comparisonPrice - a.comparisonPrice;
+          if (state.sort === 'unit-asc') return a.unitPrice - b.unitPrice;
+          if (state.sort === 'rating') return (b.rating || 0) - (a.rating || 0) || b.reviews - a.reviews;
+          return b.reviews - a.reviews; // 기본: 인기순 · 리뷰 수
+        });
+    }
+
+    function hasActiveSubFilter() {
+      return (
+        state.level !== '전체 레벨' ||
+        state.style !== '전체 스타일' ||
+        state.brand !== '전체 브랜드' ||
+        !!state.pack || state.keyword.trim() !== '' ||
+        state.wishlistOnly
+      );
+    }
+
+    /**
+     * 5. 인터랙션 핸들러
+     */
+    function setCategory(catIdx) {
+      state.category = catIdx;
+      state.brand = '전체 브랜드'; state.pack = '';
+      if (catIdx === 2 || state.sort === 'can') state.sort = catIdx === 2 ? 'can' : 'reviews';
+      document.getElementById('sortSelect').value = state.sort;
+      // 공/그립으로 전환 시 라켓 전용 세부 필터는 자동 해제하여 빈 화면 방지
+      if (catIdx === 2 || catIdx === 3) {
+        state.level = '전체 레벨';
+        state.style = '전체 스타일';
+      }
+      render();
+    }
+
+    function setLevel(lvl) {
+      state.level = lvl;
+      if (lvl !== '전체 레벨' && state.category === 0) {
+        state.category = 1; // 레벨 선택 시 테니스라켓 카테고리로 자연스럽게 포커스
+      }
+      render();
+    }
+
+    function setStyle(st) {
+      state.style = st;
+      if (st !== '전체 스타일' && state.category === 0) {
+        state.category = 1;
+      }
+      render();
+    }
+
+    function setBrand(br) {
+      state.brand = br;
+      render();
+    }
+
+    function applyUnitPriceSort() {
+      state.sort = 'unit-asc';
+      document.getElementById('sortSelect').value = 'unit-asc';
+      render();
+    }
+
+    function resetAllFilters(e) {
+      if (e) e.preventDefault();
+      state.category = 0; state.pack = '';
+      if(state.sort==='can') state.sort='reviews';
+      document.getElementById('sortSelect').value=state.sort;
+      state.level = '전체 레벨';
+      state.style = '전체 스타일';
+      state.brand = '전체 브랜드';
+      state.keyword = '';
+      state.wishlistOnly = false;
+      document.getElementById('searchInput').value = '';
+      render();
+    }
+
+    function toggleWish(id) {
+      if (wishlist.includes(id)) {
+        wishlist = wishlist.filter(itemId => itemId !== id);
+      } else {
+        wishlist = [...wishlist, id];
+      }
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(wishlist));
+      } catch (e) {}
+      render();
+    }
+
+    function toggleWishlistMode() {
+      state.wishlistOnly = !state.wishlistOnly;
+      render();
+    }
+
+    function toggleCompare(id) {
+      if (state.compareIds.includes(id)) {
+        state.compareIds = state.compareIds.filter(itemId => itemId !== id);
+      } else {
+        if (state.compareIds.length >= 3) {
+          state.compareIds = [...state.compareIds.slice(1), id];
+        } else {
+          state.compareIds = [...state.compareIds, id];
+        }
+      }
+      render();
+    }
+
+    function clearCompare() {
+      state.compareIds = [];
+      render();
+    }
+
+    /**
+     * 6. 카카오톡/링크 복사 공유 (iFrame 호환 execCommand 방식 포함)
+     */
+    function shareSiteLink() {
+      const urlToCopy = window.location.href;
+      const textArea = document.createElement('textarea');
+      textArea.value = urlToCopy;
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+      } catch (err) {}
+      document.body.removeChild(textArea);
+
+      const toast = document.getElementById('toast');
+      toast.classList.remove('hidden');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 2800);
+    }
+
+    /**
+     * 7. 스펙 비교표 모달 렌더링
+     */
+    function openCompareModal() {
+      if (state.compareIds.length === 0) return;
+      const selected = state.compareIds
+        .map(id => products.find(p => p.id === id))
+        .filter(Boolean);
+
+      const thCols = selected.map(item => `
+        <th class="p-3 text-left border-b border-gray-200 bg-gray-50 align-top min-w-[170px]">
+          <div class="w-full h-24 bg-white border border-gray-200 rounded-lg p-2 mb-2 flex items-center justify-center">
+            <img src="${item.img}" alt="${item.name}" class="max-h-full max-w-full object-contain mix-blend-multiply" referrerpolicy="no-referrer">
+          </div>
+          <div class="text-[11px] font-bold text-[#193eb7]">${item.categoryName} · ${item.brand}</div>
+          <div class="text-sm font-black text-gray-900 mt-0.5 leading-snug">${item.name}</div>
+        </th>
+      `).join('');
+
+      const tdSpec = selected.map(item => `
+        <td class="p-3 border-b border-gray-100 text-xs sm:text-sm font-medium text-gray-800">${item.opt || '-'}</td>
+      `).join('');
+
+      const tdLevelStyle = selected.map(item => `
+        <td class="p-3 border-b border-gray-100 text-xs">
+          ${item.level
+            ? `<span class="inline-block font-extrabold text-[#193eb7] bg-blue-50 px-2 py-0.5 rounded mr-1">${item.level}</span>
+               <span class="inline-block font-extrabold text-amber-800 bg-amber-100 px-2 py-0.5 rounded">${item.styleLabel}</span>`
+            : `<span class="text-gray-400">${item.catId===1 ? "라켓" : item.qty+"개입"}</span>`
+          }
+        </td>
+      `).join('');
+
+      const tdPrice = selected.map(item => `
+        <td class="p-3 border-b border-gray-100">
+          <div class="text-base sm:text-lg font-black text-gray-900">${item.comparisonPrice === null ? '쿠폰 적용가 미확인' : item.comparisonPrice.toLocaleString('ko-KR')+'원'}<small style='display:block;font-size:12px;color:#555'>판매처 표시가 ${item.price.toLocaleString('ko-KR')}원</small></div>
+          ${item.catId !== 2 && item.qty > 1 && item.unitPrice !== null
+            ? `<div class="text-xs font-extrabold text-[#193eb7] mt-0.5">개당 약 ${item.unitPrice.toLocaleString('ko-KR')}원 (${item.qty}개입)</div>`
+            : `<div class="text-[11px] font-bold text-rose-600 mt-0.5">배송비 별도</div>`
+          }
+        </td>
+      `).join('');
+
+      const tdReview = selected.map(item => `
+        <td class="p-3 border-b border-gray-100 text-xs text-gray-700 font-semibold">
+          ${item.rating ? `★ ${item.rating.toFixed(2)} · ` : ''}${item.reviews == null ? "" : "리뷰 "+item.reviews+"건"}
+        </td>
+      `).join('');
+
+      const tdAction = selected.map(item => `
+        <td class="p-3">
+          <a href="${item.url}" target="_blank" rel="sponsored noopener" class="btn-buy-b block text-center text-xs font-extrabold py-2.5 px-3 rounded-lg no-underline">
+            네이버 ›
+          </a>
+        </td>
+      `).join('');
+
+      document.getElementById('compareTableContainer').innerHTML = `
+        <table class="w-full border-collapse">
+          <thead>
+            <tr>
+              <th class="p-3 text-left border-b border-gray-200 bg-gray-50 text-xs font-extrabold text-gray-500 w-24">비교 항목</th>
+              ${thCols}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-3 border-b border-gray-100 text-xs font-extrabold text-gray-500">핵심 스펙</td>
+              ${tdSpec}
+            </tr>
+            <tr>
+              <td class="p-3 border-b border-gray-100 text-xs font-extrabold text-gray-500">레벨·스타일</td>
+              ${tdLevelStyle}
+            </tr>
+            <tr>
+              <td class="p-3 border-b border-gray-100 text-xs font-extrabold text-gray-500">상품가·단가</td>
+              ${tdPrice}
+            </tr>
+            <tr>
+              <td class="p-3 border-b border-gray-100 text-xs font-extrabold text-gray-500">평점·리뷰</td>
+              ${tdReview}
+            </tr>
+            <tr>
+              <td class="p-3 text-xs font-extrabold text-gray-500">구매 링크</td>
+              ${tdAction}
+            </tr>
+          </tbody>
+        </table>
+      `;
+
+      document.getElementById('compareModal').classList.remove('hidden');
+    }
+
+    function closeCompareModal() {
+      document.getElementById('compareModal').classList.add('hidden');
+    }
+
+    /**
+     * 8. 전체 UI 렌더링
+     */
+    function render() {
+      document.getElementById('catalogCount').textContent = products.length + '개';
+      document.getElementById('sortSelect').value = state.sort;
+      // 1단 대분류 탭 렌더링 (카테고리별 상품 개수 표기)
+      const nav = document.querySelector('nav');
+      nav.innerHTML = categories.map((catName, idx) => {
+        const count = idx === 0 ? products.length : products.filter(p => p.catId === idx).length;
+        return `
+          <button
+            type="button"
+            class="main-tab"
+            aria-pressed="${state.category === idx ? 'true' : 'false'}"
+            onclick="setCategory(${idx})"
+          >
+            ${catName} <span class="text-xs font-bold opacity-75">(${count})</span>
+          </button>
+        `;
+      }).join('');
+
+      // 2단 세부 필터 영역 가시성 전환
+      const racketSubFilters = document.getElementById('racketSubFilters');
+      const consumableGuideBar = document.getElementById('consumableGuideBar');
+      if (state.category === 2 || state.category === 3) {
+        racketSubFilters.classList.add('hidden');
+        consumableGuideBar.classList.remove('hidden');
+      } else {
+        racketSubFilters.classList.remove('hidden');
+        consumableGuideBar.classList.add('hidden');
+      }
+
+      // 레벨 필터 버튼 렌더링
+      document.getElementById('levelPills').innerHTML = levelOptions.map(lvl => `
+        <button
+          type="button"
+          class="sub-pill"
+          aria-pressed="${state.level === lvl ? 'true' : 'false'}"
+          onclick="setLevel('${lvl}')"
+        >${lvl}</button>
+      `).join('');
+
+      // 플레이스타일 필터 버튼 렌더링
+      document.getElementById('stylePills').innerHTML = styleOptions.map(st => `
+        <button
+          type="button"
+          class="sub-pill style-pill"
+          aria-pressed="${state.style === st ? 'true' : 'false'}"
+          onclick="setStyle('${st}')"
+        >${st === '전체 스타일' ? st : '#' + st}</button>
+      `).join('');
+
+      // 브랜드 필터 버튼 렌더링
+      document.querySelector('option[value="can"]').hidden = state.category !== 2;
+      document.getElementById('ballPacks').innerHTML = state.category === 2 ? ['전체 포장','낱개','박스','기타 포장'].map(x => `<button class="sub-pill" aria-pressed="${(state.pack || '전체 포장') === x}" onclick="state.pack='${x === '전체 포장' ? '' : x}';render()">${x}</button>`).join('') : '';
+      if(state.category === 2) consumableGuideBar.classList.add('hidden');
+      document.getElementById('brandPills').innerHTML = (state.category === 2 ? ['전체 브랜드','윌슨','헤드','퍼펙트','기타'] : brandOptions).map(br => `
+        <button
+          type="button"
+          class="sub-pill"
+          aria-pressed="${state.brand === br ? 'true' : 'false'}"
+          onclick="setBrand('${br}')"
+        >${br}</button>
+      `).join('');
+
+      // 상단 관심상품 버튼 상태 동기화
+      document.getElementById('wishlistCount').textContent = wishlist.length;
+      const wishBtn = document.getElementById('wishlistToggleBtn');
+      wishBtn.setAttribute('aria-pressed', state.wishlistOnly ? 'true' : 'false');
+      if (state.wishlistOnly) {
+        wishBtn.className = 'inline-flex items-center gap-1 text-xs sm:text-sm font-extrabold px-3 py-2 rounded-lg border border-rose-300 bg-rose-50 text-rose-600 cursor-pointer transition';
+      } else {
+        wishBtn.className = 'inline-flex items-center gap-1 text-xs sm:text-sm font-bold px-3 py-2 rounded-lg border border-gray-300 bg-white text-gray-800 hover:bg-gray-50 cursor-pointer transition';
+      }
+
+      // 필터링된 상품 목록 렌더링
+      const filtered = getFilteredProducts();
+      const titlePrefix = state.wishlistOnly ? '♥ 관심상품' : categories[state.category];
+      document.getElementById('resultCount').textContent = `${titlePrefix} ${filtered.length}개`;
+
+      const clearBtn = document.getElementById('clearFilterBtn');
+      if (hasActiveSubFilter()) {
+        clearBtn.classList.remove('hidden');
+      } else {
+        clearBtn.classList.add('hidden');
+      }
+
+      const grid = document.getElementById('productGrid');
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-gray-50 border border-gray-200 rounded-2xl py-16 px-4 text-center">
+            <p class="text-base font-extrabold text-gray-800 m-0">조건에 일치하는 상품이 없습니다.</p>
+            <p class="text-xs sm:text-sm text-gray-500 mt-1 mb-4">다른 레벨이나 브랜드를 선택하거나 필터를 초기화해 보세요.</p>
+            <button type="button" onclick="resetAllFilters()" class="text-xs sm:text-sm font-extrabold px-4 py-2 rounded-lg bg-[#193eb7] text-white cursor-pointer">
+              전체 상품 다시 보기
+            </button>
+          </div>
+        `;
+      } else {
+        grid.innerHTML = filtered.map(item => {
+          const isWished = wishlist.includes(item.id);
+          const isCompared = state.compareIds.includes(item.id);
+          const levelShort = item.level ? item.level.split(' ')[0] : '';
+
+          return `
+            <article class="deal-card">
+              <div class="photo-area">
+                
+                ${item.tag ? `<span class="badge-tag">${item.tag}</span>` : ''}
+                <button
+                  type="button"
+                  onclick="toggleWish('${item.id}')"
+                  aria-label="${item.name} 관심상품 저장"
+                  class="absolute top-2.5 right-2.5 z-10 px-2 py-1 rounded-md border text-xs font-extrabold cursor-pointer transition ${isWished ? 'bg-rose-50 border-rose-200 text-[#e11d48]' : 'bg-white/95 border-gray-200 text-gray-600 hover:text-gray-900'}"
+                >
+                  ${isWished ? '♥ 찜됨' : '♡ 찜'}
+                </button>
+                <a href="${item.url}" target="_blank" rel="sponsored noopener" class="block w-full text-center">
+                  <img
+                    src="${item.img}"
+                    alt="${item.name}"
+                    loading="lazy"
+                    referrerpolicy="no-referrer"
+                    onerror="this.src='https://placehold.co/300x200/f3f4f6/193eb7?text=Tennis+Hot+Deal'"
+                  >
+                </a>
+              </div>
+
+              <div class="product-details p-3.5 sm:p-4 flex flex-col flex-1">
+                <!-- 카테고리 / 레벨 / 플레이스타일 라벨 -->
+                <div class="flex items-center gap-1 flex-wrap mb-1.5">
+                  ${item.catId === 1
+                    ? `<span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-blue-50 text-[#193eb7]">${levelShort}</span>
+                       <span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-amber-100 text-amber-800">${item.styleLabel}</span>`
+                    : `<span class="text-[11px] font-extrabold px-2 py-0.5 rounded bg-emerald-50 text-emerald-800">${item.categoryName} · ${item.qty}개입</span>`
+                  }
+                </div>
+
+                <!-- 상품명 -->
+                <h3 class="text-sm sm:text-base font-extrabold text-gray-900 m-0 leading-snug">
+                  <a href="${item.url}" target="_blank" rel="sponsored noopener" class="text-inherit no-underline hover:underline">
+                    ${item.name}
+                  </a>
+                </h3>
+
+                <!-- 스펙 & 평점/리뷰 -->
+                <p class="text-xs text-gray-500 mt-1 mb-2.5 line-clamp-1">
+                  ${item.opt ? `${item.opt} · ` : ''}${item.rating ? `★ ${item.rating.toFixed(2)} (${item.reviews})` : `${item.reviews == null ? "" : "리뷰 "+item.reviews+"건"}`}
+                </p>
+
+                <div class="ball-unit-price text-sm mb-2 text-blue-900">${item.ballInfo}</div>
+                <div class="product-price bg-slate-50 border border-slate-200/80 rounded-lg px-2.5 py-2 mb-3 mt-auto">
+                  <div class="flex items-center justify-between gap-1 text-[11px] font-extrabold">
+                    <span class="text-[#e11d48]">누구나 쿠폰 적용가</span>
+                    ${item.catId !== 2 && item.qty > 1 && item.unitPrice !== null
+                      ? `<span class="text-[#193eb7] bg-blue-50 px-1.5 py-0.2 rounded">개당 약 ${item.unitPrice.toLocaleString('ko-KR')}원</span>`
+                      : (item.seller ? `<span class="text-gray-500 font-semibold">${item.seller}</span>` : '')
+                    }
+                  </div>
+                  <div class="text-lg sm:text-xl font-black text-gray-900 tracking-tight mt-0.5">
+                    ${item.comparisonPrice === null ? '쿠폰 적용가 미확인' : item.comparisonPrice.toLocaleString('ko-KR')+'원'}<small style='display:block;font-size:12px;color:#555'>판매처 표시가 ${item.price.toLocaleString('ko-KR')}원</small>
+                  </div>
+                </div>
+
+                <!-- 비교함 & 구매 버튼 -->
+                <div class="grid grid-cols-3 gap-1.5">
+                  <button
+                    type="button"
+                    onclick="toggleCompare('${item.id}')"
+                    class="col-span-1 text-xs font-extrabold py-2 rounded-lg border cursor-pointer transition ${isCompared ? 'bg-blue-50 border-[#193eb7] text-[#193eb7]' : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-50'}"
+                  >
+                    ${isCompared ? '✓ 비교중' : '+ 비교'}
+                  </button>
+                  <a
+                    href="${item.url}"
+                    target="_blank"
+                    rel="sponsored noopener"
+                    class="btn-buy-b col-span-2 text-xs font-extrabold py-2 px-2 rounded-lg text-center no-underline flex items-center justify-center"
+                  >
+                    네이버 ›
+                  </a>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      // 하단 비교함 바 렌더링
+      const compareBar = document.getElementById('compareBar');
+      document.getElementById('compareCount').textContent = state.compareIds.length;
+      if (state.compareIds.length === 0) {
+        compareBar.classList.add('hidden');
+      } else {
+        compareBar.classList.remove('hidden');
+        document.getElementById('compareChips').innerHTML = state.compareIds.map(id => {
+          const item = products.find(p => p.id === id);
+          if (!item) return '';
+          return `
+            <span class="inline-flex items-center gap-1.5 text-xs font-semibold bg-gray-800 border border-gray-700 px-2.5 py-1 rounded-full">
+              <span>${item.name}</span>
+              <button type="button" onclick="toggleCompare('${item.id}')" aria-label="${item.name} 비교 제외" class="text-gray-400 hover:text-white bg-transparent border-0 p-0 cursor-pointer">✕</button>
+            </span>
+          `;
+        }).join('');
+      }
+    }
+
+    // 이벤트 바인딩
+    document.getElementById('searchInput').addEventListener('input', e => {
+      state.keyword = e.target.value;
+      render();
+    });
+
+    document.getElementById('sortSelect').addEventListener('change', e => {
+      state.sort = e.target.value;
+      render();
+    });
+
+    // 초기 렌더링 실행
+    render();
+  </script>
+</body>
+</html>
